@@ -24,6 +24,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
            <!--  nav here -->
+             <% if current_user %>
+               <li><%= link_to "Log Out", logout_path, method: :delete %>
+                <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -31,6 +34,9 @@
 
     <!-- content -->
     <div class="container"  role="main">
+      <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
       <%= yield %>
     </div>
 
